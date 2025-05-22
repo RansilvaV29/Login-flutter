@@ -30,8 +30,8 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text('login Usuario', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.purple,
+        title: Text('Login Usuario'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -57,16 +57,16 @@ class LoginPageState extends State<LoginPage> {
                     controller: userController,
                     style: AppTextStyles.input,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person, color: Colors.white54),
-                      hintText: 'uauario',
-                      hintStyle: TextStyle(color: Colors.white10),
+                      prefixIcon: Icon(Icons.person, color: Colors.white70),
+                      hintText: 'Usuario',
+                      hintStyle: TextStyle(color: Colors.white54),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
                     validator: controller.validarUsuario,
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 12),
 
                   // Contraseña
                   TextFormField(
@@ -116,6 +116,16 @@ class LoginPageState extends State<LoginPage> {
                     onPressed: login,
                     style: AppButtonStyles.primary,
                     child: Text('Iniciar Sesión', style: AppTextStyles.button),
+                  ),
+                  //registro
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    child: Text(
+                      '¿No tienes cuenta? Regístrate',
+                      style: TextStyle(color: Colors.redAccent),
+                    ),
                   ),
                 ],
               ),

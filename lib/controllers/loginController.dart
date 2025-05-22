@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pry_login/models/loginModel.dart';
 
 class Logincontroller {
   //validaciones
@@ -24,13 +25,24 @@ class Logincontroller {
   //iniciar sesion
 
   void iniciarSesion(BuildContext context, String user, String password) {
-    //validar credenciales
-    if (user == 'raul' && password == '123456') {
-      Navigator.pushNamed(context, '/wellcome', arguments: user);
+    bool isValid = false;
+    String? foundUsername;
+
+    // Buscar usuario en la lista
+    for (var storedUser in LoginModel.registeredUsers) {
+      if (storedUser.user == user && storedUser.password == password) {
+        isValid = true;
+        foundUsername = storedUser.user;
+        break;
+      }
+    }
+
+    if (isValid) {
+      Navigator.pushNamed(context, '/wellcome', arguments: foundUsername);
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Credenciales incorrectas')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Credenciales incorrectas')),
+      );
     }
   }
 }
